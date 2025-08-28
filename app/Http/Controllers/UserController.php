@@ -6,66 +6,29 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Exceptions\InvalidOrderException;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function signup()
     {
-        $validated = request()->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:8',
-        ]);
-        $finded_email = User::where(['email'=> request()->email])->first();
-        if(isset($finded_email->email))
-        {
-            return back()->withErrors([
-                'signup' => "user already exist try to log in now",
-                ]); ;
+        $user = User::firstOrCreate(
+            ['email' => request()->email], // search by email
+            [
+                'name' => request()->name,
+                'password' => bcrypt(request()->password),
+            ]
+        );
+
+        // Fire Registered event only if it was created
+        if ($user->wasRecentlyCreated) {
+            event(new Registered($user));
         }
-        else{
-            User::create(
-                [
-                    "name"=>request()->name,
-                    "email"=>request()->email,
-                    "password"=>request()->password,
-                    ]
-                );
-            }
-            return to_route("products.index");
+
+        // Log them in regardless
+        Auth::login($user);
+
+        return redirect()->route('products.index');
     }
-
-    public function login()
-    {
-        request()->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        $finded_email = User::where([
-            'email'=> request()->email,
-            ])->first();
-
-        if(isset($finded_email))
-        {
-            if (Hash::check(request()->password, $finded_email->password)) {
-                return to_route("products.index");
-            }
-
-            else {
-                return back()->withErrors([
-                'login' => 'Wrong Password Or Email',
-                ]);
-            }
-        }
-
-        else {
-            return back()->withErrors([
-            'login' => 'Wrong Password Or Email',
-            ]);
-        }
-            // return "failed to login ";
-        }
-
-
-    }
-
+}

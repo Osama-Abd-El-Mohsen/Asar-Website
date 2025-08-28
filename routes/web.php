@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome');
+});
 
 // ------------------- ProductsController -------------------
 Route::get('/products', [ProductsController::class,"index"])->name("products.index");
@@ -11,18 +15,14 @@ Route::get('/products/{product}', [ProductsController::class,"show"])->name("pro
 Route::post('/products', [ProductsController::class,"store"])->name("products.store");
 
 
-// ------------------- UserController -------------------
-Route::get('/{logState?}', function ($logState="login") {
-    if($logState == "login")
-    {
-        return view('login');
-    }
-    elseif($logState == "signup")
-    {
-        return view('signup');
-    }
-})->name("logging");
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('/login', [UserController::class,"login"])->name("login");
-Route::post('/signup', [UserController::class,"signup"])->name("signup");
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
+require __DIR__.'/auth.php';
