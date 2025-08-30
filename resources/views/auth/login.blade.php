@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>asar_login</title>
-    <link rel="stylesheet" href="{{ asset('css/page.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+    @vite(['resources/css/app.css', 'resources/css/page.css', 'resources/css/all.min.css', 'resources/css/normalize.css'])
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 </head>
@@ -21,7 +20,7 @@
         <x-input-error :messages="$errors->get('password')" class="mt-2" />
         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
     </div>
-    
+
     <div class="top_conyiner">
         <input type="checkbox" id="flip">
         <label for="flip" class="switch">
