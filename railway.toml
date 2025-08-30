@@ -1,0 +1,5 @@
+[build]
+builder = "NIXPACKS"
+
+[variables]
+PHP_VERSION = "8.3"
