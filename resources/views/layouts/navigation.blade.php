@@ -77,7 +77,9 @@
         </div>
         <div>
             {{-- Products --}}
-            <a href={{ route('products.index') }}>Products</a>
+            @if (auth()->user()->isAdmin())
+                <a href={{ route('products.index') }}>Dashboard</a>
+            @endif
 
             {{-- Log Out --}}
             <form method="POST" action="{{ route('logout') }}">

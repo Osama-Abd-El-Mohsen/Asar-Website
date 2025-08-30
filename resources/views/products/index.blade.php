@@ -1,28 +1,51 @@
 @extends('layouts.navigation')
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
 @section('main-body')
-    <div class="product_body">
-        @foreach ($products as $product)
-            <div class="continer">
-                <div class="product discount most_popular">
-                    <div class="img">
-                        <img src="{{$product->img}}" alt="Italian Trulli">
-                    </div>
-                    <div class="p_name">{{$product->name}}</div>
-                    <div class="p_price">{{$product->price}} $</div>
-                    @if ($product->isPopular)
-                    <div class="popular">most popular</div>
-                    @endif
-
-                    @if ($product->sale > 0)
-                        <div class="discount">{{$product->sale}} %</div>
-                    @endif
-                </div>
-            </div>
-        @endforeach
+    <form class="text-center mt-5" method="GET" action="">
+        <a href={{route("products.create")}} class="btn btn-success" name="create-product" type="submit">Add Product</a>
+    </form>
+    <div class="rounded text-center  p-5 ">
+        <table class=" text-center table table-striped table-bordered border-success border border-4 ">
+            <thead class="table-success">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Sale</th>
+                    <th scope="col">isPopular</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($products as $product)
+                    <tr>
+                        <td>{{ $product->name }}</td>
+                        <td>{{ $product->description }}</td>
+                        <td>{{ $product->img }}</td>
+                        <td>{{ $product->price }}</td>
+                        <td>{{ $product->sale }}</td>
+                        <td>{{ $product->isPopular }}</td>
+                        <td>
+                            <form class="btn-group" role="group" aria-label="Basic mixed styles example" method="POST"
+                                action={{route("products.destroy",$product->id)}}>
+                                @csrf
+                                @method('DELETE')
+                                <a href={{ route('products.show', $product->id) }} class="btn btn-dark">View</a>
+                                <a href={{ route('products.edit', $product->id) }} class="btn btn-primary">Edit</a>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 @endsection()
-
-
-
-

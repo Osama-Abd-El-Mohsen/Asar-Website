@@ -18,6 +18,9 @@
                 <h5 class="card-title">Title : {{$product->name}}</h5>
                 <p class="card-title">ID : {{$product->id}}</p>
                 <p class="card-text">Description : {{$product->description}} </p>
+                <h5 class="card-title">price : {{$product->price}}</h5>
+                <h5 class="card-title">sale : {{$product->sale}}</h5>
+                <h5 class="card-title">ispopular : {{$product->isPopular}}</h5>
                 <h5 class="card-title">Created At : {{$product->created_at}}</h5>
             </div>
         </div>
