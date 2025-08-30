@@ -1,5 +1,6 @@
 body {
-    background-color: #222;
+    background-color: #111;
+    color: white;
     width: 100%;
     margin: 0;
     position: relative;
@@ -114,7 +115,6 @@ html {
 }
 #flip:checked + .switch .signup {
     color: #ff006f;
-
 }
 .card {
     perspective: 1000px;
@@ -223,8 +223,7 @@ html {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.all_face input[name="password"]
-,.all_face input[name="password_confirmation"] {
+.all_face input[name="password"] {
     width: 390px;
     height: 60px;
     background-color: transparent;
@@ -247,8 +246,7 @@ html {
 .all_face input[name="email"]:focus {
     padding-left: 30px;
 }
-.all_face input[name="password"]:focus,
-.all_face input[name="password_confirmation"]:focus{
+.all_face input[name="password"]:focus {
     padding-left: 30px;
 }
 .all_face .rem {
@@ -327,9 +325,7 @@ html {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.all_back input[name="password"],
-.all_back input[name="password_confirmation"]
-{
+.all_back input[name="password"] {
     width: 390px;
     height: 60px;
     background-color: transparent;
@@ -352,9 +348,7 @@ html {
 .all_back input[name="email"]:focus {
     padding-left: 30px;
 }
-.all_back input[name="password"]:focus,
-.all_back input[name="password_confirmation"]:focus
-{
+.all_back input[name="password"]:focus {
     padding-left: 30px;
 }
 .all_back input[name="name"] {
@@ -407,7 +401,7 @@ header {
     align-items: center;
     width: 100%;
     height: 90px;
-    background-color: #111;
+    background-color: #000;
     box-shadow: 0px 2px 5px rgba(70, 70, 70, 0.288);
 }
 header .logo {
@@ -416,10 +410,47 @@ header .logo {
     font-size: 50px;
     font-weight: 900;
 }
+header .h_list ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+header .h_list ul li {
+
+    color: white;
+    font-size: 20px ;
+    transition: 0.1s;
+    border-bottom: 5px solid black;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 20px;
+    margin-right: 20px;
+    margin-top: 30px;
+}
+header .h_list ul li:hover {
+    border-bottom-color: #10aeff;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 30px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+header .h_list ul .active {
+    border-bottom-color: #10aeff;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 30px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+header .h_list ul a {
+    text-decoration: none;
+}
 header .all_search {
     width: 100%;
     min-width: 200px;
-    grid-column: 2 / span 2;
+    grid-column: 3 / span 1;
     height: 40px;
     background: rgba(15, 15, 15, 0.205);
     position: relative;
@@ -461,23 +492,89 @@ header .all_search .s_icon i {
     color: white;
 }
 header .account {
-    width: 60px;
-    height: 60px;
-    background-image: url(../images/amgad.png);
-    background-size: cover;
-    border-radius: 50%;
-    border: 2px white solid;
-    align-self: flex-start;
-    position: relative;
-    margin-top: 5px;
-}
-header .account .name {
     width: 100%;
-    position: absolute;
+    transition: 5s;
+}
+header .account .user_l {
+    list-style: none;
+    width: 250px;
     text-align: center;
-    bottom: -25px;
-    left: -5px;
-    font-size: 20px;
+    position: absolute;
+    margin-top: -0px;
+    transition: 5s;
+}
+header .account button {
+    width: 60%;
+    height: 40px;
+    position: relative;
+    top: -20px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    border-radius: 50px;
+    margin-bottom: 0px;
+    z-index: 5;
+    transition: 1s;
+    cursor: pointer;
+    font-size: 15px !important;
+}
+header .account:hover button {
+    color: white;
+    background-color: #10aeff;
+    border: 2px solid #10aeff;
+    box-shadow: #10aeff 0px 0px 10px;
+}
+header .account .user_l li {
+    display: none;
+    background-color: #000;
+    position: relative;
+    padding: 10px;
+    z-index: 10;
+    border: 2px #10aeff solid;
+    transition: 5s;
+    transform: translateY(-20%);
+}
+header .account:hover button ~ li {
+    display: block;
+    animation: button 1s linear;
+    transform: translateY(-0%);
+    z-index: 20;
+}
+header .account .user_l li:nth-child(2)::after {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    transition: 5s;
+    border: 15px solid;
+    border-color: transparent transparent #10aeff transparent;
+}
+header .account .user_l li:nth-child(2) {
+    border-bottom: 0;
+}
+header .account .user_l li:last-child {
+    border-top: 0;
+}
+
+@keyframes button {
+    0% {
+        transform: translateY(-20%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+header .account .user_l li a {
+    padding-top: 5px;
+    text-decoration: none;
+    color: white;
+    z-index: 50;
+}
+header .account .user_l li:hover a {
+    padding-left: 5px;
     color: #10aeff;
 }
 header .cart {
@@ -510,13 +607,15 @@ header .fa-bars {
 }
 @media (max-width: 1000px) {
     header .account {
-        grid-row: 1 / span 1;
-        grid-column: 2 / span 1;
+        grid-row: 2 / span 1;
+        grid-column: 3 / span 1;
     }
     header .cart {
         grid-row: 1 / span 1;
-        grid-column: 3 / span 3;
+        grid-column: 3 / span 1;
         text-align: center;
+        display: flex;
+        justify-items: center;
     }
     header {
         height: 200px;
@@ -529,105 +628,164 @@ header .fa-bars {
     header .all_search {
         width: 80%;
         grid-row: 2 / span 1;
-        grid-column: 1 / span 3;
+        grid-column: 1 / span 2;
+    }
+    header .h_list {
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 1;
     }
 }
 /*  */
-.product_body{
-  width: 95%;
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  height: auto;
-  display: grid;
-  grid-template-columns:repeat(auto-fill,minmax(300px , 1fr));
-  column-gap: 40px;
-  row-gap: 20px;
-  justify-items: center;
-  align-items: center;
-  position: relative;
+.product_body {
+    width: 95%;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    column-gap: 40px;
+    row-gap: 20px;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
 }
-.product_body .continer{
-  width: 100%;
-  height: 400px;
-  background-color: #333;
-  border-radius: 30px;
-  overflow: hidden;
+.product_body .continer {
+    width: 100%;
+    height: 500px;
+    background-color: #333;
+    border-radius: 30px;
+    overflow: hidden;
+    z-index: 3;
 }
-.product_body .continer .product{
-  width: 100%;
-  height: 100%;
-  position: relative;
+.product_body .continer .product {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
 }
-.product_body .continer .product .img{
-  background-color: red;
-  overflow: hidden;
-  width: 90%;
-  height: 60%;
-  margin: auto;
-  position: relative;
-  margin-top: 20px;
-  z-index: 1;
-  background-size:cover;
+.product_body .continer .product .img {
+    overflow: hidden;
+    background-size: cover;
+    width: 330px;
+    height: 250px;
+    margin: auto;
+    position: relative;
+    margin-top: 20px;
+    z-index: 1;
 }
-.product_body .continer .product .img img{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: -20px;
-  left: 0;
-  margin-top: 20px;
-  background-size:cover;
-  z-index: 2;
+.product_body .continer .product .img img {
+    width: 250px;
+    height: 250px;
+    background-size: cover;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    margin-top: 20px;
+    z-index: 2;
+    transition: 0.5s;
 }
-.product_body .continer .product .p_name{
-  font-size: 30px;
-  font-weight: 900;
-  text-align: center;
-  margin-top: 20px;
+.product_body .continer:hover .product .img img {
+    transform: scale(1.2) rotateZ(6deg);
 }
-.product_body .continer .product .p_price{
-  font-size: 20px;
-  font-weight: 500;
-  text-align: center;
-  margin-top: 20px;
+.product_body .continer .product .p_name {
+    font-size: 30px;
+    font-weight: 900;
+    text-align: center;
+    margin-top: 20px;
 }
-.product_body .continer .most_popular .popular{
-  position: absolute;
-  background-color: #10aeff;
-  padding: 5px;
-  width: 100%;
-  padding-right: 25px;
-  font-size: 15px;
-  text-align: center;
-  top: -25px;
-  left: -0px;
-  transition: .5s;
-  z-index: 3;
+.product_body .continer .product .p_price {
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: start;
+    margin-top: 5px;
+    color: white;
 }
-.product_body .continer:hover .most_popular .popular{
-  background-color: #10aeff;
-  top:0px;
-  font-size: 30px;
+.product_body .continer .most_popular .popular {
+    position: absolute;
+    background-color: #10aeff;
+    padding: 5px;
+    width: 100%;
+    padding-right: 25px;
+    font-size: 15px;
+    text-align: center;
+    top: -25px;
+    left: -0px;
+    transition: 0.5s;
+    z-index: 3;
 }
-.product_body .continer .discount .discount{
-  position: absolute;
-  transform: rotateZ(45deg);
-  background-color: #10aeff;
-  color: #000;
-  padding-left: 50px;
-  padding-right: 50px;
-  font-size: 25px;
-  top: 0px;
-  right: -40px;
-  z-index: 4;
+.product_body .continer:hover .most_popular .popular {
+    background-color: #10aeff;
+    top: 0px;
+    font-size: 30px;
+}
+.product_body .continer .discount .discount {
+    position: absolute;
+    transform: rotateZ(45deg);
+    background-color: #10aeff;
+    color: #000;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 25px;
+    top: 0px;
+    right: -40px;
+    z-index: 4;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+        rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+        rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+.decorition {
+    text-decoration: line-through;
+    color: #ffffff6b !important;
+    margin-top: 20px !important;
+}
+.product_body .num {
+    position: absolute;
+    transform: translateY(-50px);
+    right: 50px;
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+    align-items: center;
+}
+.product_body .num input {
+    width: 50px;
+    height: 20px;
+}
+.product_body .num i {
+    font-size: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.product_body .buttons button {
+    width: 40%;
+    margin-left: 20px;
+    margin-top: 30px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: transparent;
+    border: 2px white solid;
+    color: white;
+    font-size: 20px;
+}
+.product_body .buttons button:hover:nth-child(1) {
+    background-color: rgb(96, 255, 4);
+    border: 2px rgb(96, 255, 4) solid;
+    box-shadow: 0px 0px 10px rgb(96, 255, 4);
+}
+.product_body .buttons button:hover:nth-child(2) {
+    background-color: #10aeff;
+    border: 2px #10aeff solid;
+    box-shadow: 0px 0px 10px #10aeff;
 }
 /*  */
 footer {
     width: 100%;
     height: 60px;
-    background-color: #111;
+    background-color: #000;
     position: absolute;
     bottom: -250px;
     margin-top: 50px;
@@ -644,11 +802,9 @@ footer .logo {
     font-weight: 900;
 }
 footer ul {
-    width: 100%;
     padding: 0;
     list-style: none;
     display: flex;
-    justify-content: flex-start;
 }
 footer ul li {
     margin-top: 20px;
@@ -658,12 +814,42 @@ footer ul li a {
     color: white;
     margin-right: 20px;
     padding: 20px;
+    padding-right: 20px;
+    border-radius: 20px;
+    border: 2px solid white;
+    transition: 1s;
+    position: relative;
+    overflow: hidden;
+}
+footer ul li .facebook::after {
+    content: "facebook";
+    position: absolute;
+    left: 0;
+    color: transparent;
+    transition: 0.8s;
+    overflow: hidden;
+}
+footer ul li .instagram::after {
+    content: "instagram";
+    position: absolute;
+    left: 0;
+    color: transparent;
+    transition: 0.8s;
+    overflow: hidden;
+}
+footer ul li .facebook:hover::after {
+    left: 80px;
+    color: white;
+    overflow: hidden;
+}
+footer ul li .instagram:hover::after {
+    left: 80px;
+    color: white;
+    overflow: hidden;
 }
 footer ul li .facebook:hover {
     background-color: #1877f2;
-}
-footer ul li .twitter:hover {
-    background-color: #1da1f2;
+    padding-right: 200px;
 }
 footer ul li .instagram:hover {
     background: linear-gradient(
@@ -674,6 +860,7 @@ footer ul li .instagram:hover {
         #962fbf,
         #4f5bd5
     );
+    padding-right: 200px;
 }
 footer .about {
     margin-top: 20px;
@@ -681,11 +868,9 @@ footer .about {
     width: 100%;
     text-align: center;
     font-size: 20px;
-    color: #10aeff;
 }
 footer .about span {
     position: relative;
-
 }
 footer .about span i {
     color: transparent;
@@ -697,7 +882,7 @@ footer .about span i {
 }
 footer .about span a {
     text-decoration: none;
-    color: white;
+    color: #ffffff;
 
     transition: 0.5s;
 }
@@ -715,4 +900,104 @@ footer .about span:hover i {
 footer samp {
     color: #10aeff;
     font-size: 25px;
+}
+.body1 {
+    height: 600px;
+}
+.info_all {
+    grid-column: 2 / span 3;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.info_all .discount {
+    position: absolute;
+    top: 0;
+    height: 50px;
+    background-color: #333;
+    padding: 10px;
+    padding-bottom: 50px;
+    border-radius: 20px;
+}
+.info_all .discount select {
+    width: 50px;
+    height: 30px;
+    border-radius: 10px;
+    transform: translateY(-2.5px);
+}
+.info_all .discount input {
+    width: 100px;
+    transform: translateY(-2.5px);
+}
+.info_all .popular {
+    position: absolute;
+    left: 380px;
+    top: 0;
+    height: 50px;
+    background-color: #333;
+    padding: 10px;
+    padding-bottom: 50px;
+    border-radius: 20px;
+}
+.info_all .popular select {
+    width: 50px;
+    height: 30px;
+    border-radius: 10px;
+    transform: translateY(-2.5px);
+}
+.info_all .image {
+    position: absolute;
+    left: 0px;
+    top: 100px;
+    height: 50px;
+    background-color: #333;
+    padding: 10px;
+    padding-bottom: 50px;
+    border-radius: 20px;
+}
+.info_all .image input {
+    width: 200px;
+    transform: translateY(-2.5px);
+}
+.info_all .name {
+    position: absolute;
+    left: 380px;
+    top: 100px;
+    height: 50px;
+    background-color: #333;
+    padding: 10px;
+    padding-bottom: 50px;
+    border-radius: 20px;
+}
+.info_all .name input {
+    width: 100px;
+    transform: translateY(-2.5px);
+}
+.info_all .price {
+    position: absolute;
+    left: 380px;
+    top: 200px;
+    height: 50px;
+    background-color: #333;
+    padding: 10px;
+    padding-bottom: 50px;
+    border-radius: 20px;
+}
+.info_all .price input {
+    width: 100px;
+    transform: translateY(-2.5px);
+}
+.info_all .oldprice {
+    position: absolute;
+    left: 0px;
+    top: 200px;
+    height: 50px;
+    background-color: #333;
+    padding: 10px;
+    padding-bottom: 50px;
+    border-radius: 20px;
+}
+.info_all .oldprice input {
+    width: 100px;
+    transform: translateY(-2.5px);
 }

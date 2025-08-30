@@ -38,9 +38,11 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    <label for="formFile" name="img"  value="{{$product->img}}" class="input-group-text">Image</label>
-                    <input class="form-control" type="file" id="formFile"  name="img" value="{{$product->img}}" >
+                    <label for="formFile" name="img"  value="{{asset('storage/'.$product->img)}}" class="input-group-text">Image</label>
+                    <input class="form-control" type="file" id="formFile"  name="img"  value={{asset('storage/'.$product->img)}} >
                 </div>
+
+
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
